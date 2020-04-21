@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html{
+				perspective: 800px;
+			}
+			.liusha{
+				height: 200px;
+				width: 200px;
+				background-color: pink;
+				margin: 100px auto;
+				transform: rotateX(45deg) rotateZ(45deg);
+				transform-style: preserve-3d;
+				animation:zhuan 20s linear infinite;
+			}
+			.liusha>div{
+				position: absolute;
+				height: 200px;
+				width: 200px;
+				/*overflow: hidden;*/
+			}
+			.liusha>div img {
+				height: 200px;
+				width: 200px;
+				vertical-align: top;
+				opacity: 0.7;
+			}
+			.hf{
+				transform: rotateY(90deg) translateZ(100px);		
+			}
+			.bf{
+				transform: rotateY(-90deg) translateZ(100px);
+			}
+			.wz{
+				transform: rotateX(90deg) translateZ(100px);
+			}
+			.zl{
+				transform: rotateX(-90deg) translateZ(100px);
+			}
+			.zn{
+				transform:rotateY(180deg) translateZ(100px);
+			}
+			.hl{
+				transform: rotateY(0deg) translateZ(100px) ;
+			}
+			@keyframes zhuan{
+				from{
+					 transform: rotateX(0deg) rotateZ(0deg);
+				}
+				to{
+					transform: rotateX(360deg) rotateZ(360deg) ;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="liusha">
+			<div class="bf">
+				<img src="img/白凤.jpg"/>
+			</div>
+			<div class="hf">
+				<img src="img/韩非.jpg"/>
+			</div>
+			<div class="wz">
+				<img src="img/卫庄.jpg"/>
+			</div>
+			<div class="zl">
+				<img src="img/张良.jpg"/>
+			</div>
+			<div class="zn">
+				<img src="img/紫女.jpg"/>
+			</div>
+			<div class="hl">
+				<img src="img/红莲.jpg"/>
+			</div>
+		</div>
+	</body>
+</html>

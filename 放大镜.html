@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width:300px;
+				height:260px;
+				border: #000000 solid 1px;
+				position:relative;
+				margin: 100px;
+			}
+			#smallbox{
+				width:300px;
+				height:260px;
+				/*border: #000000 solid 1px;*/
+				position:absolute;
+				left:0;
+				top:0;
+			}
+		 #mask{
+					width: 50px;
+					height: 50px;
+					background-color: rgba(0,0,0,.2);
+					position: absolute;
+					top:0;
+					left:0;
+					cursor: move;
+				display: none;
+					
+				}
+				#bigbox{
+					width:300px;
+					height:260px;
+					border: #000000 solid 1px;
+				position:absolute;
+				left:400px;
+				top: 100px;
+				overflow: hidden;
+				display: none;
+				}
+				#bigimg{
+					position: absolute;
+				}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="smallbox">
+			<img src="img/timg.jpg" id="smallimg" width="300px"/>
+			<div id="mask"></div>
+		</div>
+		<div id="bigbox">
+			<img src="img/timg.jpg" id="bigimg" width="600px"/>
+			
+		</div>
+		</div>
+		
+		<script type="text/javascript">
+			var box=document.getElementById("box");			
+			var smallbox=document.getElementById("smallbox");
+			var smallimg=document.getElementById("smallimg");
+			var mask=document.getElementById("mask");
+			var bigbox=document.getElementById("bigbox");
+			var bigimg=document.getElementById("bigimg");
+			smallbox.onmouseover=function(){
+				mask.style.display="block";
+				bigbox.style.display="block";	
+			};
+			smallbox.onmouseout=function(){
+				mask.style.display="none";
+				bigbox.style.display="none";	
+			};
+			//2遮罩跟随鼠标坐标
+			smallbox.onmousemove=function(event){
+				event=event||window.event;
+				//不能用smallbox的offsetLeft，因为他的offparent是box，值为0
+				//获取鼠标在页面中的坐标
+				var pageX=event.clientX;
+				var pageY=event.clientY;
+				//获取鼠标在盒子中的坐标
+				var boxX=event.clientX-box.offsetLeft;
+				var boxY=event.clientY-box.offsetTop;
+				//计算mask的坐标
+				//设置mask的位置
+				var maskX=boxX-mask.offsetWidth/2;
+				var maskY=boxY-mask.offsetHeight/2;				
+				//限制遮罩的运动范围
+				if(maskX<0){
+					maskX=0
+				}
+				if(maskX>smallbox.offsetWidth-mask.offsetWidth){
+					maskX=smallbox.offsetWidth-mask.offsetWidth
+				}
+				if(maskY<0){
+					maskY=0
+				}
+				if(maskY>smallbox.offsetHeight-mask.offsetHeight){
+					maskY=smallbox.offsetHeight-mask.offsetHeight
+				}
+				//设置遮罩位置
+				mask.style.left=maskX+"px";
+				mask.style.top=maskY+"px";
+				//按照比例移动大图
+				//大图能够移动的总距离=大图的宽度-大盒子的宽度
+				var bigimgMove=bigimg.offsetWidth-bigbox.offsetWidth;
+				//mask能够移动的总距离=小盒子的宽度-mask的宽度
+				var maskMove=smallbox.offsetWidth-mask.offsetWidth;
+				//rate=比例大图能够移动的总距离/mask能够移动的总距离
+				var rate=bigimgMove/maskMove;
+				//大图应该到的位置=rate*mask当前的位置(移动方向相反)
+				bigimg.style.left=-rate*maskX+"px";
+				bigimg.style.top=-rate*maskY+"px";
+				
+				
+				
+			};
+		</script>
+	</body>
+</html>

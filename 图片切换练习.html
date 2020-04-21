@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#outer{
+				width: 200px;
+				padding: 10px;
+				background-color: pink;
+				margin: 100px auto;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+//				点击按钮切换tupian
+//            获取两个anniu
+                 var last=document.getElementById('last');
+                 var next=document.getElementById('next');
+//               要想切换图片就是要修改img中的src属性
+//           获取img标签
+                   var img=document.getElementsByTagName("img")[0];
+//                 alert(img);
+//                   创建一个数组,用来保存图片的路径
+                var imgAryy=["img/卫庄.jpg","img/紫女.jpg","img/张良.jpg","img/白凤.jpg","img/韩非.jpg","img/红莲.jpg"];
+//              创建一个变量,来保存当前正在显示图片的索引
+                var index=0;
+//               设置提示文字
+//                获取id名为info的p元素
+                var info=document.getElementById("info");
+                  info.innerHTML="一共 "+imgAryy.length+" 张,当前第" +(index+1)+"张";
+                 last.onclick=function(){
+                 	//alert("上一张")
+//               	切换到上一张图片,索引自减
+                 	index--;
+                 	//判断index是否小于0
+                 	if(index<0){
+                 			index=imgAryy.length-1;
+                 	}
+                 	img.src=imgAryy[index]; 
+                  info.innerHTML="一共 "+imgAryy.length+" 张,当前第" +(index+1)+"张";
+                 };
+                  next.onclick=function(){
+                 	//alert("下一张")
+                 	//要修改一个元素属性，元素.属性=属性值
+//               	切换到下一张图片,索引自增
+                 	index++;
+                 	//判断index是否大于4
+                 	if(index>imgAryy.length-1){
+                 		index=0;
+                 	}
+                 	img.src=imgAryy[index];
+                  info.innerHTML="一共 "+imgAryy.length+" 张,当前第" +(index+1)+"张";
+                
+                  };
+			};
+		</script>
+	</head>
+	<body>
+		<div id="outer">
+			<p id="info"></p>
+			<img src="img/卫庄.jpg" alt="卫庄"/>
+			<button id="last">上一张</button>
+			<button id="next">下一张</button>
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		 table{
+		 	margin:10px auto;
+		 }
+		 #employ{
+		 	width: 400px;
+		 	text-align: center;
+		 }
+		#fromDiv{
+			width:400px;
+			margin: auto;
+			border: 1px solid plum;
+			text-align: center;
+		}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				//点击超链接删除一个员工的信息
+				//获取所有超链接
+				var allA=document.getElementsByTagName("a"); 
+				//为每个超链接绑定单击响应函数
+				for(var i=0;i<allA.length;i++){
+					/*for会在页面加载完后立即执行
+					而响应函数会在超链接点击时才执行
+					当响应函数执行时,for循环已执行完毕*/
+					alert("for循环已经执行"+i);
+					allA[i].onclick=function(){
+                    //	 alert(i);3，最大索引是2
+	                //   alert(allA[i]);undefined
+					alert("响应函数执行"+i);
+	                     
+                    
+					
+					 
+						/*
+						 * 点击超链接后，超链接会跳转页面，这个是超链接的默认行为
+						 * 但是此时我们不想出现默认行为，可以通过在响应函数的最后return false来取消默认行为
+						 */
+					
+					 return false;
+					};
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<table id="employ"  border="1" cellspacing="0" cellpadding="40">
+			<tr>
+				<th>name</th>
+				<th>Email</th>
+				<th>salary</th>
+				<th>      </th>				
+			</tr>
+			<tr>
+				<td>金希澈</td>
+				<td>lhj@qq。com</td>
+				<td>4000</td>
+				<td><a href="">delete</a></td>
+			</tr>
+				<tr>
+				<td>车银优</td>
+				<td>lhj@qq。com</td>
+				<td>4000</td>
+				<td><a href="">delete</a></td>
+			</tr>
+				<tr>
+				<td>李弘基</td>
+				<td>lhj@qq。com</td>
+				<td>4000</td>
+				<td><a href="">delete</a></td>
+			</tr>
+		</table>
+		<div id="fromDiv">
+			<h4>添加新员工</h4>
+			<table>
+				<tr>
+					<td id="word">name：</td>
+					<td id="inp">
+						<input type="text" name="username" id="username"/>
+					</td>
+				</tr>
+					<tr>
+					<td id="word">email：</td>
+					<td id="inp">
+						<input type="text" name="email" id="email"/>
+					</td>
+				</tr>
+					<tr>
+					<td id="word">salary：</td>
+					<td id="inp">
+						<input type="text" name="salary" id="salary"/>
+					</td>
+				</tr>
+				<tr>
+					<td id="inp" colspan="2" align="center">
+					<button id="btn" value="abc">sumbit</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

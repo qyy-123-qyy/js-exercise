@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				height: 1000px;
+				width: 2000px;
+			}
+			#box{
+				width: 60px;
+				height: 60px;
+				background-color: plum;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var box=document.getElementById("box");
+				//绑定鼠标移动事件
+				document.onmousemove=function(event){
+					//解决兼容问题
+					event=event||window.event;
+					//获取鼠标滚动条滚动的距离
+					/*
+					 * 谷歌浏览器让认为浏览器的滚动条是body的，可以通过body.scrollTop获取
+					 * 火狐等浏览器认为浏览器的滚动条是html的
+					 */
+					var st=document.body.scrollTop||document.documentElement.scrollTop;
+					var sl=document.body.scrollLeft||document.documentElement.scrollLeft;
+					
+               // console.log(st);
+					//获取鼠标坐标
+					/*
+					 * clientX client用于获取鼠标在当前的可见窗口的坐标
+					 * div的偏移量，是相对于整个页面的、
+					 * pageX，pageY可以获取鼠标相对于整个页面的坐标IE8及以下不支持
+					 *
+					 */
+					var left=event.clientX;
+					var top=event.clientY;
+//	                var left=event.pageX;
+//					var top=event.pageY;
+					box.style.left=left+sl+"px";
+					box.style.top=top+st+"px";
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+      
+		<button onclick="sendMsg()">发送请求</button>
+		<script type="text/javascript">
+			function sendMsg(){
+				get("data.php",{id:3,title:"list"},function(resp){
+					console.log(resp);
+			});
+			//封装get，
+			/*参数 url 字符串，请求的地址 
+				query(参数)，object 请求携带的参数
+				callback  function 成功之后的回调
+				isjson 布尔值 是否需要解析json
+			*/
+			function get(url,query,callback,isjson){			
+			//如果有参数，先把参数拼接到url后面
+			if (query) {
+				url+="?";
+				for (var key in query) {
+					url+=`${key}=${query[key]}&`
+				}
+				//删除最后多余的&
+				url=url.slice(0,-1);
+			}
+	     	var xhr=XMLHttpRequest();
+			xhr.open("get",url);
+			xhr.send();
+			xhr.onreadystatechange=function(){
+				if (xhr.readyState==4) {
+					if (xhr.status===200) {
+					var res=isjson?JSON.parse(xhr.responseText):xhr.responseText;
+					callback(res);
+					}
+				}
+			}
+			
+		}
+		</script>
+	</body>
+</html>

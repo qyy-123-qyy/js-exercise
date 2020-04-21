@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img id="img1" src="img/0.jpg"/>
+		<button id="btn">开始</button>
+		<button id="btn1">暂停</button>
+		
+		<script type="text/javascript">
+			//使图片自动切换
+//			var img1=document.getElementById("img1");
+			var img1=document.getElementsByTagName("img")[0];
+			//创建一个数组来保存图片的路径
+			var imgArr=["img/0.jpg","img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			//创建一个变量来保存当前图片的索引
+			var index=0;
+			var btn=document.getElementById("btn");
+			var btn1=document.getElementById("btn1");
+			var timer;
+			//开启定时器
+			btn.onclick=function(){
+				clearInterval(timer);
+				timer=setInterval(function(){
+				//使索引自增
+				index++;
+				//判断索引超出最大索引
+//				if (index>=imgArr.length) {
+//					index=0;	
+//				}
+                    index%=imgArr.length;
+				//修改img的src属性
+				img1.src=imgArr[index];
+			},1000)
+			};
+			btn1.onclick=function(){
+				clearInterval(timer);
+			}
+		</script>
+	</body>
+</html>

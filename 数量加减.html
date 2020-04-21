@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+.num button{
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	border: 1px #999 solid;
+}
+ .num input {
+	width: 50px;
+	height: 24px;
+	text-align: center;
+}
+		</style>
+	</head>
+	<body>
+		<div class="num">
+			<button class="less" onclick="lessbtn()">—</button>
+		<input type="text" name="nums" id="nums" value="0" />
+		<button class="plus" onclick="plusbtn()">+</button>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		var nums=document.getElementById("nums");
+	    var numsValue=parseInt(nums.value);
+		var plus=document.getElementsByClassName("plus");
+		var less=document.getElementsByClassName("less")[0];
+//		console.log(nums.value);
+		function plusbtn(){
+//		console.log(typeof numsValue);
+			nums.value=numsValue++;
+		}
+		function lessbtn(){
+			if (nums.value==0) {
+				return;
+			} else{
+				nums.value=numsValue--;
+			}
+		}
+
+		
+		</script>
+	</script>
+</html>
